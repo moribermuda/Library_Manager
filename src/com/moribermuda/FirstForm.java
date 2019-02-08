@@ -67,9 +67,11 @@ public JPanel getPanel(int width,int higth)
 
         jTextField2.setToolTipText("jTextField1");
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 255, 204));
         jLabel1.setText("نام کاربری");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 255, 204));
         jLabel2.setText("رمز عبور");
 
