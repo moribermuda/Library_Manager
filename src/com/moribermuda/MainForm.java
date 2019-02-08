@@ -2,14 +2,12 @@ package com.moribermuda;
 
 import com.moribermuda.classes.Book;
 import com.moribermuda.classes.BookType;
-import com.moribermuda.classes.Book_Stack;
 import com.moribermuda.classes.Order;
 import com.moribermuda.classes.Stack;
 import java.awt.ComponentOrientation;
-import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,16 +20,16 @@ public class MainForm extends javax.swing.JFrame
     
     DefaultTableModel issu_model;
     DefaultTableModel book_model;
+    DefaultComboBoxModel<BookType> cmodel=new DefaultComboBoxModel<>(BookType.values());
     
     public MainForm()
     {
-       
-       
         initComponents();
         initIssueTable();
         initBookTable();
         oriantation();
-    }
+
+        }
 
     public void oriantation()
     {
@@ -133,8 +131,8 @@ public class MainForm extends javax.swing.JFrame
         txt_AddBookStackID = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        cm_BookType = new javax.swing.JComboBox<>();
         jLabel23 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jFrame1 = new javax.swing.JFrame();
         jPanel4 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
@@ -236,10 +234,9 @@ public class MainForm extends javax.swing.JFrame
 
         jLabel22.setText("مثال 4-2-3  در قفسه شماره 3 سطر 2 ستون 4");
 
-        cm_BookType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cm_BookType.setPreferredSize(new java.awt.Dimension(120, 30));
-
         jLabel23.setText("نوع نشریه");
+
+        jComboBox1.setModel(cmodel);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -274,9 +271,9 @@ public class MainForm extends javax.swing.JFrame
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel3))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(cm_BookType, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txt_AddBookPrice, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txt_AddBookPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                                    .addComponent(jComboBox1, 0, 120, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
@@ -338,8 +335,8 @@ public class MainForm extends javax.swing.JFrame
                     .addComponent(btn_SaveBook, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_AddBookStackID, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(cm_BookType, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel23))
+                    .addComponent(jLabel23)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel22)
                 .addContainerGap())
@@ -812,10 +809,10 @@ public class MainForm extends javax.swing.JFrame
     private javax.swing.JButton btn_SaveBook;
     private javax.swing.JMenuItem btn_addMember;
     private javax.swing.JMenuItem btn_showAddBook;
-    private javax.swing.JComboBox<String> cm_BookType;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JComboBox<BookType> jComboBox1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
