@@ -7,6 +7,7 @@ import com.moribermuda.classes.Order;
 import com.moribermuda.classes.PersianCalendar;
 import com.moribermuda.classes.Stack;
 import java.awt.ComponentOrientation;
+import java.awt.Font;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -55,16 +56,20 @@ public class MainForm extends javax.swing.JFrame
         jPanel2.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         jPanel1.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
     }
-public void CenterCell(JTable tbl,int n)
-{
-    DefaultTableCellRenderer render = new DefaultTableCellRenderer();
+
+    public void configTable(JTable tbl, int n)
+    {
+        DefaultTableCellRenderer render = new DefaultTableCellRenderer();
         render.setHorizontalAlignment(JLabel.CENTER);
-        for (int i = 0; i < n; i++)
-        {
+        for (int i = 0; i < n; i++) {
             tbl.getColumnModel().getColumn(i).setCellRenderer(render);
         }
         ((DefaultTableCellRenderer) tbl.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
-}
+        tbl.getTableHeader().setFont(new Font("Segoe UI", 1, 12));
+        tbl.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        tbl.setForeground(new java.awt.Color(0, 0, 102));
+    }
+
     public void initBookTable()
     {
         book_model = new DefaultTableModel();
@@ -99,7 +104,7 @@ public void CenterCell(JTable tbl,int n)
         }
         book_model.addTableModelListener(tbl_Book);
         tbl_Book.setModel(book_model);
-        CenterCell(tbl_Book,11);
+        configTable(tbl_Book, 11);
     }
 
     public void initIssueTable()
@@ -128,7 +133,7 @@ public void CenterCell(JTable tbl,int n)
         }
         //  issu_model.addTableModelListener(jTable1);
         jTable1.setModel(issu_model);
-        CenterCell(jTable1,8);
+        configTable(jTable1, 8);
     }
 
     public void initMembertTable()
@@ -159,7 +164,7 @@ public void CenterCell(JTable tbl,int n)
         }
         member_model.addTableModelListener(tbl_Member);
         tbl_Member.setModel(member_model);
-CenterCell(tbl_Member,9);
+        configTable(tbl_Member, 9);
     }
 
     @SuppressWarnings("unchecked")
