@@ -17,7 +17,19 @@ public class Book
     private boolean availibal;
     private int print_count;
     private int customer_ID;
-private BookType bookType;
+    private BookType bookType;
+    private String Stack_property;
+
+    public String getStack_property()
+    {
+        return Stack_property;
+    }
+
+    public void setStack_property(String Stack_property)
+    {
+        this.Stack_property = Stack_property;
+    }
+    
 
     public Book()
     {
@@ -53,7 +65,6 @@ private BookType bookType;
     {
         this.bookType = bookType;
     }
-
 
     public int getCustomer_ID()
     {

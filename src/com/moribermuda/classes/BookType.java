@@ -11,7 +11,7 @@ package com.moribermuda.classes;
  */
 public enum BookType
 {
-    MAGAZINE,BOOK,ISSUE,NEWSPAPER;
+    MAGAZINE,BOOK,ISSUE,NEWSPAPER,DEFAULT
     
     
 }

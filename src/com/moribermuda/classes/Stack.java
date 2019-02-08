@@ -8,9 +8,29 @@ public class Stack
 {
     private int stack_id;
     private String stack_Titel;
-    private int stack_Row;
-    private int stack_Coulomn;
-    
+    private int rowCount;
+    private int columnCount;
+
+    public int getRowCount()
+    {
+        return rowCount;
+    }
+
+    public void setRowCount(int rowCount)
+    {
+        this.rowCount = rowCount;
+    }
+
+    public int getColumnCount()
+    {
+        return columnCount;
+    }
+
+    public void setColumnCount(int columnCount)
+    {
+        this.columnCount = columnCount;
+    }
+     
     public int getStack_id()
     {
         return stack_id;
@@ -31,25 +51,6 @@ public class Stack
         this.stack_Titel = stack_Titel;
     }
 
-    public int getStack_Row()
-    {
-        return stack_Row;
-    }
-
-    public void setStack_Row(int stack_Row)
-    {
-        this.stack_Row = stack_Row;
-    }
-
-    public int getStack_Coulomn()
-    {
-        return stack_Coulomn;
-    }
-
-    public void setStack_Coulomn(int stack_Coulomn)
-    {
-        this.stack_Coulomn = stack_Coulomn;
-    }
-    
+  
     
 }

@@ -2,7 +2,9 @@ package com.moribermuda;
 
 import com.moribermuda.classes.Book;
 import com.moribermuda.classes.BookType;
+import com.moribermuda.classes.Book_Stack;
 import com.moribermuda.classes.Order;
+import com.moribermuda.classes.Stack;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -141,7 +143,13 @@ public static ArrayList<Book> fillTableBook()
                 b.setPrice(rs.getDouble("price"));
                 b.setAvailibal(rs.getBoolean("availibal"));
                 b.setCustomer_ID(rs.getInt("mem_Code"));
-               // b.setBookType(BookType.valueOf(rs.getString("bookType")));
+               
+                try{
+                b.setBookType(BookType.valueOf(rs.getString("bookType")));
+                }catch(NullPointerException ee)
+                {
+                     b.setBookType(BookType.DEFAULT);
+                }
                 list.add(b);
 
             }
@@ -190,5 +198,72 @@ public static ArrayList<Book> fillTableBook()
         return flag;
 
     }
+ public static boolean insertStack(Stack s)
+    {
+        boolean flag = false;
+        PreparedStatement pstm = null;
+        try {
+            Class.forName(Driver);
+            Connection conn = getConnection();
+            pstm = conn.prepareStatement(
+                    "INSERT INTO Stack"
+                    + " (id,titel,[rowCount],columnCount)"
+                    + " VALUES(?,?,?,?)");
+            pstm.setInt(1, s.getStack_id());
+            pstm.setString(2, s.getStack_Titel());
+            pstm.setInt(3, s.getRowCount());
+            pstm.setInt(4, s.getColumnCount());
+            
+  int rowInsert = pstm.executeUpdate();
+            if (rowInsert > 0)
+            {
+                flag = true;
+            } else
+            {
+                flag = false;
+            }
+            conn.close();
+        } catch (ClassNotFoundException | SQLException e)
+        {
+            System.out.println(e.getMessage());
+            flag = false;
+        }
+        return flag;
 
+    }
+ public static boolean insertBookStack(Book_Stack bs)
+    {
+        boolean flag = false;
+        PreparedStatement pstm = null;
+        try {
+            Class.forName(Driver);
+            Connection conn = getConnection();
+            pstm = conn.prepareStatement(
+                    "INSERT INTO Book_Stack"
+                    + " (Stack_id,stack_Row,stack_Column,book_id,property)"
+                    + " VALUES(?,?,?,?,?)");
+            pstm.setInt(1, bs.getStack_ID());
+            pstm.setInt(2, bs.getStack_Row());
+            pstm.setInt(3, bs.getStack_Coulomn());
+            pstm.setInt(4, bs.getBook_ID());
+            pstm.setString(5, bs.getProperty());
+           
+            
+  int rowInsert = pstm.executeUpdate();
+            if (rowInsert > 0)
+            {
+                flag = true;
+            } else
+            {
+                flag = false;
+            }
+            conn.close();
+        } catch (ClassNotFoundException | SQLException e)
+        {
+            System.out.println(e.getMessage());
+            flag = false;
+        }
+        return flag;
+
+    }
 }
