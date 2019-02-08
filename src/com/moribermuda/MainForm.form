@@ -294,7 +294,7 @@
         </Container>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JFrame" name="jFrame1">
+    <Container class="javax.swing.JFrame" name="MemAddForm">
       <Properties>
         <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[724, 274]"/>
@@ -328,48 +328,82 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jTextField13" min="-2" pref="120" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jTextField16" min="-2" pref="120" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jTextField12" min="-2" pref="120" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="txt_AddMemTellNum" min="-2" pref="120" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jTextField15" min="-2" pref="120" max="-2" attributes="0"/>
+                                      <Component id="txt_AddMemBrithday" min="-2" pref="120" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <Component id="jButton3" alignment="0" min="-2" pref="133" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="txt_AddMemLname" min="-2" pref="120" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="btnSaveMember" alignment="0" min="-2" pref="133" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
-                      <EmptySpace pref="34" max="32767" attributes="0"/>
+                      <EmptySpace pref="16" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jTextField14" min="-2" pref="120" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jTextField11" min="-2" pref="120" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="txt_AddMemFname" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                                          <Component id="txt_AddMemNationalCode" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="txt_AddMemExpirDate" min="-2" pref="120" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace pref="15" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="txt_AddMemID" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                                          <Component id="txt_AddMemFrom" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel24" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="txt_AddMeminitDate" min="-2" pref="120" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -378,61 +412,76 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="2" attributes="0">
-                          <Component id="jTextField12" alignment="2" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="jTextField11" alignment="2" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="jTextField13" alignment="2" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="txt_AddMemFname" alignment="2" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="txt_AddMemID" alignment="2" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="txt_AddMemLname" alignment="2" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="jLabel17" alignment="2" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel14" alignment="2" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel10" alignment="2" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <EmptySpace pref="18" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="2" attributes="0">
-                          <Component id="jTextField16" alignment="2" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="jLabel16" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField15" alignment="2" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="jLabel12" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField14" alignment="2" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="txt_AddMemFrom" alignment="2" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="jLabel24" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt_AddMemNationalCode" alignment="2" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="jLabel13" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt_AddMemBrithday" alignment="2" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="jLabel12" alignment="2" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="61" max="32767" attributes="0"/>
-                      <Component id="jButton3" min="-2" pref="45" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="txt_AddMemTellNum" alignment="2" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="jLabel16" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt_AddMeminitDate" alignment="2" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="jLabel26" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt_AddMemExpirDate" alignment="2" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="jLabel25" alignment="2" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnSaveMember" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                          <Component id="jLabel27" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="jButton3">
+            <Component class="javax.swing.JButton" name="btnSaveMember">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x630;&#x62e;&#x6cc;&#x631;&#x647;"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveMemberActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField11">
+            <Component class="javax.swing.JTextField" name="txt_AddMemID">
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField12">
+            <Component class="javax.swing.JTextField" name="txt_AddMemFname">
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField13">
+            <Component class="javax.swing.JTextField" name="txt_AddMemLname">
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField14">
+            <Component class="javax.swing.JTextField" name="txt_AddMemNationalCode">
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField15">
+            <Component class="javax.swing.JTextField" name="txt_AddMemBrithday">
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField16">
+            <Component class="javax.swing.JTextField" name="txt_AddMemTellNum">
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
@@ -465,6 +514,41 @@
             <Component class="javax.swing.JLabel" name="jLabel17">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x646;&#x634;&#x627;&#x646;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel24">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x642;&#x633;&#x645;&#x62a; "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txt_AddMemFrom">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txt_AddMeminitDate">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txt_AddMemExpirDate">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel25">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x62a;&#x627;&#x631;&#x6cc;&#x62e; &#x627;&#x62a;&#x645;&#x627;&#x645; &#x639;&#x636;&#x648;&#x6cc;&#x62a;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel26">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x62a;&#x627;&#x631;&#x6cc;&#x62e; &#x639;&#x636;&#x648;&#x6cc;&#x62a;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel27">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x641;&#x631;&#x645;&#x62a; &#x62a;&#x627;&#x631;&#x6cc;&#x62e; 1397/01/01 "/>
               </Properties>
             </Component>
           </SubComponents>

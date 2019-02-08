@@ -2,10 +2,17 @@ package com.moribermuda;
 
 import com.moribermuda.classes.Book;
 import com.moribermuda.classes.BookType;
+import com.moribermuda.classes.Member;
 import com.moribermuda.classes.Order;
+import com.moribermuda.classes.PersianCalendar;
 import com.moribermuda.classes.Stack;
 import java.awt.ComponentOrientation;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -17,11 +24,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MainForm extends javax.swing.JFrame
 {
-    
+
     DefaultTableModel issu_model;
     DefaultTableModel book_model;
-    DefaultComboBoxModel<BookType> cmodel=new DefaultComboBoxModel<>(BookType.values());
-    
+    DefaultComboBoxModel<BookType> cmodel = new DefaultComboBoxModel<>(BookType.values());
+
     public MainForm()
     {
         initComponents();
@@ -29,12 +36,16 @@ public class MainForm extends javax.swing.JFrame
         initBookTable();
         oriantation();
 
-        }
+    }
 
     public void oriantation()
     {
         jPanel6.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-       
+        jPanel4.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        jPanel5.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        jPanel3.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        jPanel2.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        jPanel1.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
     }
 
     public void initBookTable()
@@ -54,7 +65,7 @@ public class MainForm extends javax.swing.JFrame
         ArrayList<Book> list = SqlHelper.fillTableBook();
         Object[] row = new Object[11];
         for (Book b : list) {
-            
+
             row[0] = b.getId();
             row[1] = b.getTitle();
             row[2] = b.getAuthorName();
@@ -66,14 +77,14 @@ public class MainForm extends javax.swing.JFrame
             row[8] = b.getCustomer_ID();
             row[9] = b.isAvailibal();
             row[10] = b.getBookType();
-            
+
             book_model.addRow(row);
         }
         book_model.addTableModelListener(tbl_Book);
         tbl_Book.setModel(book_model);
-        
+
     }
-    
+
     public void initIssueTable()
     {
         issu_model = new DefaultTableModel();
@@ -101,7 +112,7 @@ public class MainForm extends javax.swing.JFrame
         //  issu_model.addTableModelListener(jTable1);
         jTable1.setModel(issu_model);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents()
@@ -133,21 +144,28 @@ public class MainForm extends javax.swing.JFrame
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jFrame1 = new javax.swing.JFrame();
+        MemAddForm = new javax.swing.JFrame();
         jPanel4 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
-        jTextField13 = new javax.swing.JTextField();
-        jTextField14 = new javax.swing.JTextField();
-        jTextField15 = new javax.swing.JTextField();
-        jTextField16 = new javax.swing.JTextField();
+        btnSaveMember = new javax.swing.JButton();
+        txt_AddMemID = new javax.swing.JTextField();
+        txt_AddMemFname = new javax.swing.JTextField();
+        txt_AddMemLname = new javax.swing.JTextField();
+        txt_AddMemNationalCode = new javax.swing.JTextField();
+        txt_AddMemBrithday = new javax.swing.JTextField();
+        txt_AddMemTellNum = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        txt_AddMemFrom = new javax.swing.JTextField();
+        txt_AddMeminitDate = new javax.swing.JTextField();
+        txt_AddMemExpirDate = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
         StackAddForm = new javax.swing.JDialog();
         jPanel6 = new javax.swing.JPanel();
         txt_AddStackTitel = new javax.swing.JTextField();
@@ -353,23 +371,30 @@ public class MainForm extends javax.swing.JFrame
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jFrame1.setSize(new java.awt.Dimension(724, 274));
+        MemAddForm.setSize(new java.awt.Dimension(724, 274));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "فرم اضافه کردن عضو جدید", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 0, 204))); // NOI18N
 
-        jButton3.setText("ذخیره");
+        btnSaveMember.setText("ذخیره");
+        btnSaveMember.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnSaveMemberActionPerformed(evt);
+            }
+        });
 
-        jTextField11.setToolTipText("");
+        txt_AddMemID.setToolTipText("");
 
-        jTextField12.setToolTipText("");
+        txt_AddMemFname.setToolTipText("");
 
-        jTextField13.setToolTipText("");
+        txt_AddMemLname.setToolTipText("");
 
-        jTextField14.setToolTipText("");
+        txt_AddMemNationalCode.setToolTipText("");
 
-        jTextField15.setToolTipText("");
+        txt_AddMemBrithday.setToolTipText("");
 
-        jTextField16.setToolTipText("");
+        txt_AddMemTellNum.setToolTipText("");
 
         jLabel10.setText("کد عضویت");
 
@@ -383,76 +408,122 @@ public class MainForm extends javax.swing.JFrame
 
         jLabel17.setText("نشان");
 
+        jLabel24.setText("قسمت ");
+
+        txt_AddMemFrom.setToolTipText("");
+
+        txt_AddMeminitDate.setToolTipText("");
+
+        txt_AddMemExpirDate.setToolTipText("");
+
+        jLabel25.setText("تاریخ اتمام عضویت");
+
+        jLabel26.setText("تاریخ عضویت");
+
+        jLabel27.setText("فرمت تاریخ 1397/01/01 ");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel17))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel16)
-                        .addGap(60, 60, 60)
+                        .addContainerGap()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txt_AddMemTellNum, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel14))
+                                .addComponent(jLabel16))
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txt_AddMemBrithday, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel12))))
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(txt_AddMemLname, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel17))
+                            .addComponent(btnSaveMember, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel13))
+                        .addComponent(jLabel27)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel10)))
-                .addGap(50, 50, 50))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_AddMemFname, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_AddMemNationalCode, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel13)))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(txt_AddMemExpirDate, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel25)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_AddMemID, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_AddMemFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel24)))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(txt_AddMeminitDate, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel26)))
+                        .addGap(58, 58, 58))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_AddMemFname, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_AddMemID, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_AddMemLname, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17)
                     .addComponent(jLabel14)
                     .addComponent(jLabel10))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_AddMemFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel24)
+                    .addComponent(txt_AddMemNationalCode, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13)
+                    .addComponent(txt_AddMemBrithday, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(txt_AddMemTellNum, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16)
-                    .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12)
-                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_AddMeminitDate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel26)
+                    .addComponent(txt_AddMemExpirDate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel25))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSaveMember, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel27))
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
-        jFrame1.getContentPane().setLayout(jFrame1Layout);
-        jFrame1Layout.setHorizontalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout MemAddFormLayout = new javax.swing.GroupLayout(MemAddForm.getContentPane());
+        MemAddForm.getContentPane().setLayout(MemAddFormLayout);
+        MemAddFormLayout.setHorizontalGroup(
+            MemAddFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jFrame1Layout.setVerticalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        MemAddFormLayout.setVerticalGroup(
+            MemAddFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -721,7 +792,7 @@ public class MainForm extends javax.swing.JFrame
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
     {//GEN-HEADEREND:event_jButton1ActionPerformed
         Book b = new Book(204, "riazi", "ria", "abazari", 600.00, 2018, "moribermuda", true, 10, -1, BookType.NEWSPAPER);
-        
+
         System.out.println(b.toString());
         if (SqlHelper.insertBook(b)) {
             System.out.println("Book Is Added");
@@ -737,13 +808,14 @@ public class MainForm extends javax.swing.JFrame
 
     private void btn_addMemberActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_addMemberActionPerformed
     {//GEN-HEADEREND:event_btn_addMemberActionPerformed
-        jFrame1.setVisible(true);        // TODO add your handling code here:
+        MemAddForm.setVisible(true);        // TODO add your handling code here:
+       txt_AddMeminitDate.setText(PersianCalendar.getPersianDate(new Date()));
     }//GEN-LAST:event_btn_addMemberActionPerformed
 
     private void btn_SaveBookActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_SaveBookActionPerformed
     {//GEN-HEADEREND:event_btn_SaveBookActionPerformed
-       Book b=new Book();
-       
+        Book b = new Book();
+
     }//GEN-LAST:event_btn_SaveBookActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -753,16 +825,37 @@ public class MainForm extends javax.swing.JFrame
 
     private void btn_AddStackActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_AddStackActionPerformed
     {//GEN-HEADEREND:event_btn_AddStackActionPerformed
-       Stack s=new Stack();
-       s.setStack_id(Integer.valueOf(txt_AddStackID.getText()));
-       s.setStack_Titel(txt_AddStackTitel.getText());
-       s.setRowCount(Integer.valueOf(txt_AddStackRow.getText()));
-       s.setColumnCount(Integer.valueOf(txt_AddStackcolumn.getText()));
-       if(SqlHelper.insertStack(s))
-       {
-           JOptionPane.showMessageDialog(null, "قفسه اضافه شد");   
-       }
+        Stack s = new Stack();
+        s.setStack_id(Integer.valueOf(txt_AddStackID.getText()));
+        s.setStack_Titel(txt_AddStackTitel.getText());
+        s.setRowCount(Integer.valueOf(txt_AddStackRow.getText()));
+        s.setColumnCount(Integer.valueOf(txt_AddStackcolumn.getText()));
+        if (SqlHelper.insertStack(s)) {
+            JOptionPane.showMessageDialog(null, "قفسه اضافه شد");
+        }
     }//GEN-LAST:event_btn_AddStackActionPerformed
+
+    private void btnSaveMemberActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnSaveMemberActionPerformed
+    {//GEN-HEADEREND:event_btnSaveMemberActionPerformed
+        Member m = new Member();
+        m.setMem_code(Integer.valueOf(txt_AddMemID.getText()));
+        m.setFname(txt_AddMemFname.getText());
+        m.setLname(txt_AddMemLname.getText());
+        m.setFrom(txt_AddMemFrom.getText());
+        m.setNational_Code(Long.valueOf(txt_AddMemNationalCode.getText()));
+        m.setBrithday(txt_AddMemBrithday.getText());
+        m.setTellNum(txt_AddMemTellNum.getText());
+        try {
+            m.setMem_Date(new SimpleDateFormat("yyyy/MM/dd").parse(txt_AddMeminitDate.getText()));
+            m.setExpireDate(new SimpleDateFormat("yyyy/MM/dd").parse(txt_AddMemExpirDate.getText()));
+        } catch (ParseException ex) {
+        JOptionPane.showMessageDialog(null, "لطفا در وارد کردن تاریخ دقت نمایید ");
+        }
+        if(SqlHelper.insertMember(m))
+        {
+            JOptionPane.showMessageDialog(null, "عضو جدید اضافه شد");
+        }
+    }//GEN-LAST:event_btnSaveMemberActionPerformed
 
     /**
      * @param args the command line arguments
@@ -804,16 +897,16 @@ public class MainForm extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFrame BookAddForm;
+    private javax.swing.JFrame MemAddForm;
     private javax.swing.JDialog StackAddForm;
+    private javax.swing.JButton btnSaveMember;
     private javax.swing.JButton btn_AddStack;
     private javax.swing.JButton btn_SaveBook;
     private javax.swing.JMenuItem btn_addMember;
     private javax.swing.JMenuItem btn_showAddBook;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox<BookType> jComboBox1;
-    private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -830,6 +923,10 @@ public class MainForm extends javax.swing.JFrame
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -852,12 +949,6 @@ public class MainForm extends javax.swing.JFrame
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField19;
     private javax.swing.JTable tbl_Book;
@@ -871,6 +962,15 @@ public class MainForm extends javax.swing.JFrame
     private javax.swing.JTextField txt_AddBookTitel;
     private javax.swing.JTextField txt_AddBookTranslator;
     private javax.swing.JTextField txt_AddBookYear;
+    private javax.swing.JTextField txt_AddMemBrithday;
+    private javax.swing.JTextField txt_AddMemExpirDate;
+    private javax.swing.JTextField txt_AddMemFname;
+    private javax.swing.JTextField txt_AddMemFrom;
+    private javax.swing.JTextField txt_AddMemID;
+    private javax.swing.JTextField txt_AddMemLname;
+    private javax.swing.JTextField txt_AddMemNationalCode;
+    private javax.swing.JTextField txt_AddMemTellNum;
+    private javax.swing.JTextField txt_AddMeminitDate;
     private javax.swing.JTextField txt_AddStackID;
     private javax.swing.JTextField txt_AddStackRow;
     private javax.swing.JTextField txt_AddStackTitel;

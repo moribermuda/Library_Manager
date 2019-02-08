@@ -3,14 +3,17 @@ package com.moribermuda;
 import com.moribermuda.classes.Book;
 import com.moribermuda.classes.BookType;
 import com.moribermuda.classes.Book_Stack;
+import com.moribermuda.classes.Member;
 import com.moribermuda.classes.Order;
 import com.moribermuda.classes.Stack;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -249,6 +252,45 @@ public static ArrayList<Book> fillTableBook()
             pstm.setString(5, bs.getProperty());
            
             
+  int rowInsert = pstm.executeUpdate();
+            if (rowInsert > 0)
+            {
+                flag = true;
+            } else
+            {
+                flag = false;
+            }
+            conn.close();
+        } catch (ClassNotFoundException | SQLException e)
+        {
+            System.out.println(e.getMessage());
+            flag = false;
+        }
+        return flag;
+
+    }
+ 
+ //___------------<Member>-----------____
+  public static boolean insertMember(Member m)
+    {
+        boolean flag = false;
+        PreparedStatement pstm = null;
+        try {
+            Class.forName(Driver);
+            Connection conn = getConnection();
+            pstm = conn.prepareStatement(
+                    "INSERT INTO Member"
+                    + " (mem_Code,fname,lname,[from],National_Code,brithday,mem_Date,expierDate,tellNum)"
+                    + " VALUES(?,?,?,?,?,?,?,?,?)");
+            pstm.setInt(1, m.getMem_code());
+            pstm.setString(2,m.getFname());
+            pstm.setString(3, m.getLname());
+            pstm.setString(4, m.getFrom());
+            pstm.setLong(5, m.getNational_Code());
+            pstm.setString(6, m.getBrithday());
+            pstm.setTimestamp(7,  new Timestamp(m.getMem_Date().getTime()));
+            pstm.setTimestamp(8, new Timestamp(m.getExpireDate().getTime()));
+            pstm.setString(9, m.getTellNum());
   int rowInsert = pstm.executeUpdate();
             if (rowInsert > 0)
             {

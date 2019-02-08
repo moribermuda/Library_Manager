@@ -10,7 +10,7 @@ public class Person
     private String fname;
     private String lname;
     private String from;
-    private long identityCode;
+    private long National_Code;
     private String brithday;
 
     public String getFname()
@@ -43,15 +43,17 @@ public class Person
         this.from = from;
     }
 
-    public long getIdentityCode()
+    public long getNational_Code()
     {
-        return identityCode;
+        return National_Code;
     }
 
-    public void setIdentityCode(long identityCode)
+    public void setNational_Code(long National_Code)
     {
-        this.identityCode = identityCode;
+        this.National_Code = National_Code;
     }
+
+  
 
     public String getBrithday()
     {
