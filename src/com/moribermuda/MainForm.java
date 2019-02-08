@@ -15,7 +15,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -27,6 +30,7 @@ public class MainForm extends javax.swing.JFrame
 
     DefaultTableModel issu_model;
     DefaultTableModel book_model;
+    DefaultTableModel member_model;
     DefaultComboBoxModel<BookType> cmodel = new DefaultComboBoxModel<>(BookType.values());
 
     public MainForm()
@@ -34,12 +38,16 @@ public class MainForm extends javax.swing.JFrame
         initComponents();
         initIssueTable();
         initBookTable();
+        initMembertTable();
         oriantation();
 
     }
 
     public void oriantation()
     {
+        tbl_Member.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        tbl_Book.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        jTable1.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         jPanel6.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         jPanel4.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         jPanel5.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
@@ -47,7 +55,16 @@ public class MainForm extends javax.swing.JFrame
         jPanel2.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         jPanel1.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
     }
-
+public void CenterCell(JTable tbl,int n)
+{
+    DefaultTableCellRenderer render = new DefaultTableCellRenderer();
+        render.setHorizontalAlignment(JLabel.CENTER);
+        for (int i = 0; i < n; i++)
+        {
+            tbl.getColumnModel().getColumn(i).setCellRenderer(render);
+        }
+        ((DefaultTableCellRenderer) tbl.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+}
     public void initBookTable()
     {
         book_model = new DefaultTableModel();
@@ -82,7 +99,7 @@ public class MainForm extends javax.swing.JFrame
         }
         book_model.addTableModelListener(tbl_Book);
         tbl_Book.setModel(book_model);
-
+        CenterCell(tbl_Book,11);
     }
 
     public void initIssueTable()
@@ -111,6 +128,38 @@ public class MainForm extends javax.swing.JFrame
         }
         //  issu_model.addTableModelListener(jTable1);
         jTable1.setModel(issu_model);
+        CenterCell(jTable1,8);
+    }
+
+    public void initMembertTable()
+    {
+        member_model = new DefaultTableModel();
+        member_model.addColumn("کد عضو");
+        member_model.addColumn("نام");
+        member_model.addColumn("نام خانوادگی");
+        member_model.addColumn("قسمت");
+        member_model.addColumn("کد ملی");
+        member_model.addColumn("تاریخ تولد");
+        member_model.addColumn("تاریخ عضویت");
+        member_model.addColumn("تاریخ اتمام عضویت");
+        member_model.addColumn("شماره تلفن");
+        ArrayList<Member> list = SqlHelper.fillTableMember();
+        Object[] row = new Object[9];
+        for (Member m : list) {
+            row[0] = m.getMem_code();
+            row[1] = m.getFname();
+            row[2] = m.getLname();
+            row[3] = m.getFrom();
+            row[4] = m.getNational_Code();
+            row[5] = m.getBrithday();
+            row[6] = m.getMem_Date();
+            row[7] = m.getExpireDate();
+            row[8] = m.getTellNum();
+            member_model.addRow(row);
+        }
+        member_model.addTableModelListener(tbl_Member);
+        tbl_Member.setModel(member_model);
+CenterCell(tbl_Member,9);
     }
 
     @SuppressWarnings("unchecked")
@@ -189,6 +238,12 @@ public class MainForm extends javax.swing.JFrame
         jLabel11 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tbl_Member = new javax.swing.JTable();
+        jTextField18 = new javax.swing.JTextField();
+        jLabel28 = new javax.swing.JLabel();
+        jTextField20 = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -644,7 +699,7 @@ public class MainForm extends javax.swing.JFrame
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("داشبورد", jPanel1);
@@ -697,20 +752,64 @@ public class MainForm extends javax.swing.JFrame
                             .addComponent(jLabel11)
                             .addComponent(jLabel15))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("لیست کتب", jPanel2);
+
+        tbl_Member.setAutoCreateRowSorter(true);
+        tbl_Member.setBorder(new javax.swing.border.MatteBorder(null));
+        tbl_Member.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        tbl_Member.setForeground(new java.awt.Color(0, 0, 102));
+        tbl_Member.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String []
+            {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(tbl_Member);
+
+        jLabel28.setText("کد اشتراک عضو");
+
+        jLabel29.setText("نام عضو");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(jLabel28)
+                .addGap(18, 18, 18)
+                .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel29)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel28)
+                            .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel29))))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("لیست اعضا", jPanel5);
@@ -809,7 +908,7 @@ public class MainForm extends javax.swing.JFrame
     private void btn_addMemberActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_addMemberActionPerformed
     {//GEN-HEADEREND:event_btn_addMemberActionPerformed
         MemAddForm.setVisible(true);        // TODO add your handling code here:
-       txt_AddMeminitDate.setText(PersianCalendar.getPersianDate(new Date()));
+        txt_AddMeminitDate.setText(PersianCalendar.getPersianDate(new Date()));
     }//GEN-LAST:event_btn_addMemberActionPerformed
 
     private void btn_SaveBookActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_SaveBookActionPerformed
@@ -849,10 +948,9 @@ public class MainForm extends javax.swing.JFrame
             m.setMem_Date(new SimpleDateFormat("yyyy/MM/dd").parse(txt_AddMeminitDate.getText()));
             m.setExpireDate(new SimpleDateFormat("yyyy/MM/dd").parse(txt_AddMemExpirDate.getText()));
         } catch (ParseException ex) {
-        JOptionPane.showMessageDialog(null, "لطفا در وارد کردن تاریخ دقت نمایید ");
+            JOptionPane.showMessageDialog(null, "لطفا در وارد کردن تاریخ دقت نمایید ");
         }
-        if(SqlHelper.insertMember(m))
-        {
+        if (SqlHelper.insertMember(m)) {
             JOptionPane.showMessageDialog(null, "عضو جدید اضافه شد");
         }
     }//GEN-LAST:event_btnSaveMemberActionPerformed
@@ -927,6 +1025,8 @@ public class MainForm extends javax.swing.JFrame
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -947,11 +1047,15 @@ public class MainForm extends javax.swing.JFrame
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField17;
+    private javax.swing.JTextField jTextField18;
     private javax.swing.JTextField jTextField19;
+    private javax.swing.JTextField jTextField20;
     private javax.swing.JTable tbl_Book;
+    private javax.swing.JTable tbl_Member;
     private javax.swing.JTextField txt_AddBookAuthor;
     private javax.swing.JTextField txt_AddBookID;
     private javax.swing.JTextField txt_AddBookMemCode;

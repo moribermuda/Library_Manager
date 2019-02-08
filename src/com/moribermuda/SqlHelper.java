@@ -124,10 +124,8 @@ public class SqlHelper
 
     }
 
-    
-    
 //------------<Book>---------------
-public static ArrayList<Book> fillTableBook()
+    public static ArrayList<Book> fillTableBook()
     {
         ArrayList<Book> list = new ArrayList<>();
         Connection con = getConnection();
@@ -146,12 +144,11 @@ public static ArrayList<Book> fillTableBook()
                 b.setPrice(rs.getDouble("price"));
                 b.setAvailibal(rs.getBoolean("availibal"));
                 b.setCustomer_ID(rs.getInt("mem_Code"));
-               
-                try{
-                b.setBookType(BookType.valueOf(rs.getString("bookType")));
-                }catch(NullPointerException ee)
-                {
-                     b.setBookType(BookType.DEFAULT);
+
+                try {
+                    b.setBookType(BookType.valueOf(rs.getString("bookType")));
+                } catch (NullPointerException ee) {
+                    b.setBookType(BookType.DEFAULT);
                 }
                 list.add(b);
 
@@ -161,7 +158,8 @@ public static ArrayList<Book> fillTableBook()
         }
         return list;
 
-    }    
+    }
+
     public static boolean insertBook(Book b)
     {
         boolean flag = false;
@@ -184,24 +182,22 @@ public static ArrayList<Book> fillTableBook()
             pstm.setInt(9, b.getPrint_count());
             pstm.setInt(10, b.getCustomer_ID());
             pstm.setString(11, b.getBookType().name());
-  int rowInsert = pstm.executeUpdate();
-            if (rowInsert > 0)
-            {
+            int rowInsert = pstm.executeUpdate();
+            if (rowInsert > 0) {
                 flag = true;
-            } else
-            {
+            } else {
                 flag = false;
             }
             conn.close();
-        } catch (ClassNotFoundException | SQLException e)
-        {
+        } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e.getMessage());
             flag = false;
         }
         return flag;
 
     }
- public static boolean insertStack(Stack s)
+
+    public static boolean insertStack(Stack s)
     {
         boolean flag = false;
         PreparedStatement pstm = null;
@@ -216,25 +212,23 @@ public static ArrayList<Book> fillTableBook()
             pstm.setString(2, s.getStack_Titel());
             pstm.setInt(3, s.getRowCount());
             pstm.setInt(4, s.getColumnCount());
-            
-  int rowInsert = pstm.executeUpdate();
-            if (rowInsert > 0)
-            {
+
+            int rowInsert = pstm.executeUpdate();
+            if (rowInsert > 0) {
                 flag = true;
-            } else
-            {
+            } else {
                 flag = false;
             }
             conn.close();
-        } catch (ClassNotFoundException | SQLException e)
-        {
+        } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e.getMessage());
             flag = false;
         }
         return flag;
 
     }
- public static boolean insertBookStack(Book_Stack bs)
+
+    public static boolean insertBookStack(Book_Stack bs)
     {
         boolean flag = false;
         PreparedStatement pstm = null;
@@ -250,28 +244,24 @@ public static ArrayList<Book> fillTableBook()
             pstm.setInt(3, bs.getStack_Coulomn());
             pstm.setInt(4, bs.getBook_ID());
             pstm.setString(5, bs.getProperty());
-           
-            
-  int rowInsert = pstm.executeUpdate();
-            if (rowInsert > 0)
-            {
+
+            int rowInsert = pstm.executeUpdate();
+            if (rowInsert > 0) {
                 flag = true;
-            } else
-            {
+            } else {
                 flag = false;
             }
             conn.close();
-        } catch (ClassNotFoundException | SQLException e)
-        {
+        } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e.getMessage());
             flag = false;
         }
         return flag;
 
     }
- 
- //___------------<Member>-----------____
-  public static boolean insertMember(Member m)
+
+    //___------------<Member>-----------____
+    public static boolean insertMember(Member m)
     {
         boolean flag = false;
         PreparedStatement pstm = null;
@@ -283,29 +273,55 @@ public static ArrayList<Book> fillTableBook()
                     + " (mem_Code,fname,lname,[from],National_Code,brithday,mem_Date,expierDate,tellNum)"
                     + " VALUES(?,?,?,?,?,?,?,?,?)");
             pstm.setInt(1, m.getMem_code());
-            pstm.setString(2,m.getFname());
+            pstm.setString(2, m.getFname());
             pstm.setString(3, m.getLname());
             pstm.setString(4, m.getFrom());
             pstm.setLong(5, m.getNational_Code());
             pstm.setString(6, m.getBrithday());
-            pstm.setTimestamp(7,  new Timestamp(m.getMem_Date().getTime()));
+            pstm.setTimestamp(7, new Timestamp(m.getMem_Date().getTime()));
             pstm.setTimestamp(8, new Timestamp(m.getExpireDate().getTime()));
             pstm.setString(9, m.getTellNum());
-  int rowInsert = pstm.executeUpdate();
-            if (rowInsert > 0)
-            {
+            int rowInsert = pstm.executeUpdate();
+            if (rowInsert > 0) {
                 flag = true;
-            } else
-            {
+            } else {
                 flag = false;
             }
             conn.close();
-        } catch (ClassNotFoundException | SQLException e)
-        {
+        } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e.getMessage());
             flag = false;
         }
         return flag;
+
+    }
+
+    public static ArrayList<Member> fillTableMember()
+    {
+        ArrayList<Member> list = new ArrayList<>();
+        Connection con = getConnection();
+        try {
+            Statement stm = con.createStatement();
+            ResultSet rs = stm.executeQuery("select * from Member");
+            while (rs.next()) {
+                Member m = new Member();
+                m.setMem_code(rs.getInt("mem_Code"));
+                m.setFname(rs.getString("fname"));
+                m.setLname(rs.getString("lname"));
+                m.setFrom(rs.getString("from"));
+                m.setBrithday(rs.getString("brithday"));
+                m.setMem_Date(rs.getDate("mem_Date"));
+                m.setExpireDate(rs.getDate("expierDate"));
+                m.setTellNum(rs.getString("tellNum"));
+                m.setNational_Code(rs.getLong("National_Code"));
+
+                list.add(m);
+
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return list;
 
     }
 }
