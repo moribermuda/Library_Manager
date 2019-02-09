@@ -1,5 +1,5 @@
 /**this class help you to connect a data base and make sql Query,you should creat database and Tables same classes 
-* I will make a sqlhelper class to connect any type of sql platform (mysql,postgre,sqlServer,...) 
+* I will make a sqlhelper class to connect any type of sql platform (mysql,postgre,sqlServer,...) and automatically creat database and tabls
 * moribermuda@gmail.com
 */
 package com.moribermuda;
@@ -163,7 +163,74 @@ public class SqlHelper
         return list;
 
     }
+    public static ArrayList<Book> searchBook_ID(int id)
+    {
+        ArrayList<Book> list = new ArrayList<>();
+        Connection con = getConnection();
+        try {
+            Statement stm = con.createStatement();
+            ResultSet rs = stm.executeQuery("select * from Book where id like %"+id);
+            while (rs.next()) {
+                Book b = new Book();
+                b.setId(rs.getInt("id"));
+                b.setTitle(rs.getString("title"));
+                b.setAuthorName(rs.getString("authorName"));
+                b.setPublisher(rs.getString("publisher"));
+                b.setTranslator(rs.getString("translator"));
+                b.setYear(rs.getInt("year"));
+                b.setPrint_count(rs.getInt("print_Count"));
+                b.setPrice(rs.getDouble("price"));
+                b.setAvailibal(rs.getBoolean("availibal"));
+                b.setCustomer_ID(rs.getInt("mem_Code"));
 
+                try {
+                    b.setBookType(BookType.valueOf(rs.getString("bookType")));
+                } catch (NullPointerException ee) {
+                    b.setBookType(BookType.DEFAULT);
+                }
+                list.add(b);
+
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return list;
+
+    }
+public static ArrayList<Book> searchBook_titel(String title)
+    {
+        ArrayList<Book> list = new ArrayList<>();
+        Connection con = getConnection();
+        try {
+            Statement stm = con.createStatement();
+            ResultSet rs = stm.executeQuery("select * from Book where title like %N'"+title+"'");
+            while (rs.next()) {
+                Book b = new Book();
+                b.setId(rs.getInt("id"));
+                b.setTitle(rs.getString("title"));
+                b.setAuthorName(rs.getString("authorName"));
+                b.setPublisher(rs.getString("publisher"));
+                b.setTranslator(rs.getString("translator"));
+                b.setYear(rs.getInt("year"));
+                b.setPrint_count(rs.getInt("print_Count"));
+                b.setPrice(rs.getDouble("price"));
+                b.setAvailibal(rs.getBoolean("availibal"));
+                b.setCustomer_ID(rs.getInt("mem_Code"));
+
+                try {
+                    b.setBookType(BookType.valueOf(rs.getString("bookType")));
+                } catch (NullPointerException ee) {
+                    b.setBookType(BookType.DEFAULT);
+                }
+                list.add(b);
+
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage()); 
+        }
+        return list;
+
+    }
     public static boolean insertBook(Book b)
     {
         boolean flag = false;
@@ -307,6 +374,62 @@ public class SqlHelper
         try {
             Statement stm = con.createStatement();
             ResultSet rs = stm.executeQuery("select * from Member");
+            while (rs.next()) {
+                Member m = new Member();
+                m.setMem_code(rs.getInt("mem_Code"));
+                m.setFname(rs.getString("fname"));
+                m.setLname(rs.getString("lname"));
+                m.setFrom(rs.getString("from"));
+                m.setBrithday(rs.getString("brithday"));
+                m.setMem_Date(rs.getDate("mem_Date"));
+                m.setExpireDate(rs.getDate("expierDate"));
+                m.setTellNum(rs.getString("tellNum"));
+                m.setNational_Code(rs.getLong("National_Code"));
+
+                list.add(m);
+
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return list;
+
+    }
+  public static ArrayList<Member> searchMember_ID(int id)
+    {
+        ArrayList<Member> list = new ArrayList<>();
+        Connection con = getConnection();
+        try {
+            Statement stm = con.createStatement();
+            ResultSet rs = stm.executeQuery("select * from Member where mem_Code like %"+id);
+            while (rs.next()) {
+                Member m = new Member();
+                m.setMem_code(rs.getInt("mem_Code"));
+                m.setFname(rs.getString("fname"));
+                m.setLname(rs.getString("lname"));
+                m.setFrom(rs.getString("from"));
+                m.setBrithday(rs.getString("brithday"));
+                m.setMem_Date(rs.getDate("mem_Date"));
+                m.setExpireDate(rs.getDate("expierDate"));
+                m.setTellNum(rs.getString("tellNum"));
+                m.setNational_Code(rs.getLong("National_Code"));
+
+                list.add(m);
+
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return list;
+
+    }  
+    public static ArrayList<Member> seatchMember_flName(String name)
+    {
+        ArrayList<Member> list = new ArrayList<>();
+        Connection con = getConnection();
+        try {
+            Statement stm = con.createStatement();
+            ResultSet rs = stm.executeQuery("select * from Member where fname like %N'"+name+"' or lname like %N'"+name+"'");
             while (rs.next()) {
                 Member m = new Member();
                 m.setMem_code(rs.getInt("mem_Code"));
