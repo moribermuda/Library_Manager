@@ -69,7 +69,7 @@ public class MainForm extends javax.swing.JFrame
         tbl.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         tbl.setForeground(new java.awt.Color(0, 0, 102));
     }
-
+//------------------------<Book Table showing methods>------------------
     public void initBookTable()
     {
         book_model = new DefaultTableModel();
@@ -85,9 +85,12 @@ public class MainForm extends javax.swing.JFrame
         book_model.addColumn("موجود");
         book_model.addColumn("نوع نشریه");
         ArrayList<Book> list = SqlHelper.fillTableBook();
-        Object[] row = new Object[11];
+        fillBookTable(list);
+    }
+public void fillBookTable(ArrayList<Book> list)
+{
+Object[] row = new Object[11];
         for (Book b : list) {
-
             row[0] = b.getId();
             row[1] = b.getTitle();
             row[2] = b.getAuthorName();
@@ -99,14 +102,14 @@ public class MainForm extends javax.swing.JFrame
             row[8] = b.getCustomer_ID();
             row[9] = b.isAvailibal();
             row[10] = b.getBookType();
-
             book_model.addRow(row);
         }
         book_model.addTableModelListener(tbl_Book);
         tbl_Book.setModel(book_model);
         configTable(tbl_Book, 11);
-    }
+}
 
+//------------------------<Order Table showing methods>------------------
     public void initIssueTable()
     {
         issu_model = new DefaultTableModel();
@@ -119,7 +122,11 @@ public class MainForm extends javax.swing.JFrame
         issu_model.addColumn("تاریخ شروع ");
         issu_model.addColumn("تاریخ تحویل");
         ArrayList<Order> list = SqlHelper.fillTableIssu();
-        Object[] row = new Object[8];
+        fillOrderTable(list);
+    }
+public void fillOrderTable(ArrayList<Order> list)
+{
+Object[] row = new Object[8];
         for (Order o : list) {
             row[0] = o.getId();
             row[1] = o.getBook_Code();
@@ -134,8 +141,8 @@ public class MainForm extends javax.swing.JFrame
         //  issu_model.addTableModelListener(jTable1);
         jTable1.setModel(issu_model);
         configTable(jTable1, 8);
-    }
-
+}
+//------------------------<Member Table showing methods>------------------
     public void initMembertTable()
     {
         member_model = new DefaultTableModel();
@@ -149,7 +156,11 @@ public class MainForm extends javax.swing.JFrame
         member_model.addColumn("تاریخ اتمام عضویت");
         member_model.addColumn("شماره تلفن");
         ArrayList<Member> list = SqlHelper.fillTableMember();
-        Object[] row = new Object[9];
+        fillMemberTable(list);
+        }
+public void fillMemberTable(ArrayList<Member> list)
+{
+Object[] row = new Object[9];
         for (Member m : list) {
             row[0] = m.getMem_code();
             row[1] = m.getFname();
@@ -165,7 +176,7 @@ public class MainForm extends javax.swing.JFrame
         member_model.addTableModelListener(tbl_Member);
         tbl_Member.setModel(member_model);
         configTable(tbl_Member, 9);
-    }
+}
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
