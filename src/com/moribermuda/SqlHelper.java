@@ -1,3 +1,7 @@
+/**this class help you to connect a data base and make sql Query,you should creat database and Tables same classes 
+* I will make a sqlhelper class to connect any type of sql platform (mysql,postgre,sqlServer,...) 
+* moribermuda@gmail.com
+*/
 package com.moribermuda;
 
 import com.moribermuda.classes.Book;
@@ -23,13 +27,13 @@ import javax.swing.JOptionPane;
  */
 public class SqlHelper
 {
-
+//declare variables 
     static final String Driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     private static String URL = "jdbc:sqlserver://127.0.0.1:1433;databaseName=";
     private static String User = "";
     private static String Pass = "";
     private static String dbName = "";
-
+//geter and seter of variables 
     public static String getDbName()
     {
         return dbName;
@@ -69,7 +73,7 @@ public class SqlHelper
     {
         SqlHelper.Pass = Pass;
     }
-
+//method for connection is establish
     public static boolean connectionDB()
     {
         try {
@@ -85,7 +89,7 @@ public class SqlHelper
             return false;
         }
     }
-
+//----very common method to get connection
     public static Connection getConnection()
     {
         try {
@@ -96,7 +100,7 @@ public class SqlHelper
             return null;
         }
     }
-
+//-----------<Order Class methods>--------
     public static ArrayList<Order> fillTableIssu()
     {
         ArrayList<Order> list = new ArrayList<>();
@@ -196,7 +200,7 @@ public class SqlHelper
         return flag;
 
     }
-
+//--------------<Stack table methods>---------------
     public static boolean insertStack(Stack s)
     {
         boolean flag = false;
@@ -227,7 +231,7 @@ public class SqlHelper
         return flag;
 
     }
-
+//---------------<BookStack methods>------------
     public static boolean insertBookStack(Book_Stack bs)
     {
         boolean flag = false;
