@@ -125,7 +125,28 @@ public class SqlHelper
 
         }
         return list;
+    }
+    public static boolean deleteOrder(int id) {
+boolean flag=false;
+        String sql = "DELETE FROM Order WHERE id = ?";
+        try (
+            Connection conn = getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql)); 
+            pstmt.setInt(1, id);
+            
+        int rowInsert = pstmt.executeUpdate();
+        if (rowInsert > 0) {
+                flag = true;
+            } else {
+                flag = false;
+            }
+            conn.close();
+        } catch (SQLException e) {
 
+            System.out.println(e.getMessage());
+
+        }
+return flag;
     }
 
 //------------<Book>---------------
@@ -265,7 +286,28 @@ public static ArrayList<Book> searchBook_titel(String title)
             flag = false;
         }
         return flag;
+    }
+    public static boolean deleteBook(int id) {
+boolean flag=false;
+        String sql = "DELETE FROM Book WHERE Book_ID = ?";
+        try (
+            Connection conn = getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql)); 
+            pstmt.setInt(1, id);
+            
+        int rowInsert = pstmt.executeUpdate();
+        if (rowInsert > 0) {
+                flag = true;
+            } else {
+                flag = false;
+            }
+            conn.close();
+        } catch (SQLException e) {
 
+            System.out.println(e.getMessage());
+
+        }
+return flag;
     }
 //--------------<Stack table methods>---------------
     public static boolean insertStack(Stack s)
@@ -296,7 +338,28 @@ public static ArrayList<Book> searchBook_titel(String title)
             flag = false;
         }
         return flag;
+    }
+public static boolean deletStack(int id) {
+boolean flag=false;
+        String sql = "DELETE FROM Stack WHERE id= ?";
+        try (
+            Connection conn = getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql)); 
+            pstmt.setInt(1, id);
+            
+        int rowInsert = pstmt.executeUpdate();
+        if (rowInsert > 0) {
+                flag = true;
+            } else {
+                flag = false;
+            }
+            conn.close();
+        } catch (SQLException e) {
 
+            System.out.println(e.getMessage());
+
+        }
+return flag;
     }
 //---------------<BookStack methods>------------
     public static boolean insertBookStack(Book_Stack bs)
@@ -328,9 +391,29 @@ public static ArrayList<Book> searchBook_titel(String title)
             flag = false;
         }
         return flag;
-
     }
+public static boolean deleteBookStack(int id) {
+boolean flag=false;
+        String sql = "DELETE FROM Member WHERE stack_ID = ?";
+        try (
+            Connection conn = getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql)); 
+            pstmt.setInt(1, id);
+            
+        int rowInsert = pstmt.executeUpdate();
+        if (rowInsert > 0) {
+                flag = true;
+            } else {
+                flag = false;
+            }
+            conn.close();
+        } catch (SQLException e) {
 
+            System.out.println(e.getMessage());
+
+        }
+return flag;
+    }
     //___------------<Member>-----------____
     public static boolean insertMember(Member m)
     {
@@ -451,4 +534,28 @@ public static ArrayList<Book> searchBook_titel(String title)
         return list;
 
     }
+    public static boolean deleteMember(int id) {
+boolean flag=false;
+        String sql = "DELETE FROM Member WHERE mem_Code = ?";
+        try (
+            Connection conn = getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql)); 
+            pstmt.setInt(1, id);
+            
+        int rowInsert = pstmt.executeUpdate();
+        if (rowInsert > 0) {
+                flag = true;
+            } else {
+                flag = false;
+            }
+            conn.close();
+        } catch (SQLException e) {
+
+            System.out.println(e.getMessage());
+
+        }
+return flag;
+    }
+
+
 }
